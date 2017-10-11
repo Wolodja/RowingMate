@@ -81,19 +81,17 @@ public class MotivationFragment extends Fragment {
 
     }
     public void setRandomTextAndImage(){
-        int a = (int)(Math.random()*10);
-        if(a==tempa){
-            setRandomTextAndImage();
-        }
+        int a = tempa;
+        int b = tempb;
+        while(a==tempa) //random text must be different from previous one
+            a = (int)(Math.random()*10);
+        while (b==tempb) //random image must be different from previous one
+            b = (int)(Math.random()*12)+1;
         tempa=a;
-        mt.setText(texts[a]);
-        int b = (int)(Math.random()*12)+1;
-        if(b==tempb){
-            setRandomTextAndImage();
-        }
         tempb=b;
+        mt.setText(texts[a]);
         int resID = getResources().getIdentifier("mf"+b , "drawable",getActivity().getPackageName());
-        Log.d("Log", resID+"");
+        //Log.d("Log", resID+"");
         mi.setImageResource(resID);
     }
 
