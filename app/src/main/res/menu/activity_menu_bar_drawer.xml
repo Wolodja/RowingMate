@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/motywacja"
+            android:icon="@drawable/motivation"
+            android:title="@string/motywacja" />
+        <item
+            android:id="@+id/zaplanuj"
+            android:icon="@drawable/zaplanuj"
+            android:title="@string/zaplanuj" />
+        <item
+            android:id="@+id/dodaj"
+            android:icon="@drawable/dodaj"
+            android:title="@string/dodaj" />
+        <item
+            android:id="@+id/zrealizowane"
+            android:icon="@drawable/zrealizowane"
+            android:title="@string/zrealizowane" />
+        <item
+            android:id="@+id/dane"
+            android:icon="@drawable/dane"
+            android:title="@string/dane" />
+    </group>
+
+    <item android:title="Created by">
+        <menu>
+            <item
+                android:id="@+id/autor"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Volodymyr Vaskovych" />
+
+        </menu>
+    </item>
+
+</menu>

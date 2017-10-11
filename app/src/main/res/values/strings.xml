@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Rowing Mate</string>
+    <string name="title_activity_menu">Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_menu_bar">Menu</string>
+    <string name="user_name">Piotr</string>
+    <string name="user_level">Początkujący</string>
+    <string name="motywacja">Motywacja</string>
+    <string name="zaplanuj">Zaplanuj trening</string>
+    <string name="dodaj">Dodaj wyniki treningu</string>
+    <string name="zrealizowane">Zrealizowane treningi</string>
+    <string name="dane">Moje dane</string>
+    <string-array name="two_types">
+        <item>Na wodzie</item>
+        <item>Erogmetr</item>
+    </string-array>
+    <string-array name="time_types">
+        <item>10-30</item>
+        <item>30-60</item>
+        <item>>60</item>
+    </string-array>
+    <string-array name="typ_types">
+        <item>Wytrwałość</item>
+        <item>Moc</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
