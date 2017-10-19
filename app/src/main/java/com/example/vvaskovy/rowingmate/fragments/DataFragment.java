@@ -2,7 +2,6 @@ package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -55,7 +54,7 @@ public class DataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_data, container, false);
     }
 
@@ -163,6 +162,8 @@ public class DataFragment extends Fragment {
                 }else{
                     Log.d("log","Pusta tablica");
                 }
+                cursor.close();
+
             }
         });
 

@@ -3,23 +3,24 @@ package com.example.vvaskovy.rowingmate.fragments;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.vvaskovy.rowingmate.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AddFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+
+
+public class Planning2Fragment extends Fragment {
+
+
+    TextView planTreningu;
+
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -29,7 +30,7 @@ public class AddFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public AddFragment() {
+    public Planning2Fragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +40,11 @@ public class AddFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddFragment.
+     * @return A new instance of fragment Planning2Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddFragment newInstance(String param1, String param2) {
-        AddFragment fragment = new AddFragment();
+    public static Planning2Fragment newInstance(String param1, String param2) {
+        Planning2Fragment fragment = new Planning2Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +65,13 @@ public class AddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        return inflater.inflate(R.layout.fragment_planning2, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        planTreningu = (TextView) getActivity().findViewById(R.id.planTreningu);
+        planTreningu.setText(mParam1);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,16 +81,15 @@ public class AddFragment extends Fragment {
         }
     }
 
-/*    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
+
+    public void setArguments(String text){
+        //Toast.makeText(getActivity(), text,Toast.LENGTH_LONG).show();
+
+        mParam1=text;
+
+    }
+
+
 
     @Override
     public void onDetach() {

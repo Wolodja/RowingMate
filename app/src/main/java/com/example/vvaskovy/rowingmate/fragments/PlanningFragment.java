@@ -1,7 +1,10 @@
 package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
-import android.content.Context;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.example.vvaskovy.rowingmate.DatabaseHelper;
 import com.example.vvaskovy.rowingmate.R;
 
 
@@ -25,6 +27,11 @@ public class PlanningFragment extends Fragment {
     ArrayAdapter<CharSequence> adapter1, adapter2, adapter3;
     Button planuj;
     Spinner spinner1, spinner2, spinner3;
+    Planning2Fragment planning2Fragment;
+    DatabaseHelper db;
+    int poziomDoUstawienia=-1;
+
+
 
     public PlanningFragment() {
         // Required empty public constructor
@@ -77,8 +84,24 @@ public class PlanningFragment extends Fragment {
                 R.array.typ_types, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter3);
-
         planuj = (Button) getView().findViewById(R.id.planuj);
+
+        db = new DatabaseHelper(getActivity());
+        final SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.query("Uzytkownik",null,null,null,null,null,null);
+        poziomDoUstawienia=-1;
+        if(cursor.moveToFirst()){
+            do{
+                poziomDoUstawienia = cursor.getInt(cursor.getColumnIndex("poziom"));
+                Log.d("Log", "poziom "+cursor.getInt(cursor.getColumnIndex("poziom")) );
+            }while(cursor.moveToNext());
+        }else{
+            Log.d("log","Pusta tablica");
+        }
+        cursor.close();
+
+
+
         planuj.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -87,22 +110,49 @@ public class PlanningFragment extends Fragment {
                 String text1 = spinner1.getSelectedItem().toString();
                 String text2 = spinner2.getSelectedItem().toString();
                 String text3 = spinner3.getSelectedItem().toString();
-                Toast.makeText(getActivity(), text1+ " "+text2+" "+text3,Toast.LENGTH_LONG).show();
-               // Log.d("Log", "Imie "+text1);
+
+                if(text3.equals("Wytrwałość"))
+                    text3="wytrwalosc";
+                else
+                    text3="moc";
+
+                if(text2.equals("10-30"))
+                    text2="30";
+                else
+                    if(text2.equals("30-60"))
+                        text2="60";
+                    else
+                        text2="61";
+
+
+                Log.d("log", poziomDoUstawienia+ " "+text3);
+                Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Plan Where typPlanu = '"+text3+
+                        "' AND czasPlanu = '"+text2+"' AND poziomUzytkownika = "+poziomDoUstawienia, null);
+                String planingText="";
+                if(cursor.moveToFirst()){
+                    do{
+                        planingText = cursor.getString(cursor.getColumnIndex("opisPlanu"));
+                        Log.d("Log", "czas "+cursor.getInt(cursor.getColumnIndex("czasPlanu"))+" typ "+
+                                cursor.getString(cursor.getColumnIndex("typPlanu"))+
+                                " poziom "+ cursor.getInt(cursor.getColumnIndex("poziomUzytkownika"))+
+                                "opis "+ cursor.getString(cursor.getColumnIndex("opisPlanu")));
+                    }while(cursor.moveToNext());
+                }else{
+                    Log.d("log","Pusta tablica");
+                }
+
+
+                planning2Fragment = new Planning2Fragment();
+                planning2Fragment.setArguments(planingText);
+                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, planning2Fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
-        //String text = mySpinner.getSelectedItem().toString();
     }
-    /*    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
+
 
     @Override
     public void onDetach() {
