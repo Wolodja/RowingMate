@@ -10,7 +10,7 @@
     <string name="user_level">Początkujący</string>
     <string name="motywacja">Motywacja</string>
     <string name="zaplanuj">Zaplanuj trening</string>
-    <string name="dodaj">Dodaj wyniki treningu</string>
+    <string name="dodaj">Podaj wynik treningu</string>
     <string name="zrealizowane">Zrealizowane treningi</string>
     <string name="dane">Moje dane</string>
     <string-array name="two_types">

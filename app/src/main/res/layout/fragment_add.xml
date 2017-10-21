@@ -6,8 +6,109 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/dodaj" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17pt"
+        android:layout_marginTop="10pt"
+        android:fontFamily="casual"
+        android:text="@string/dodaj"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="10pt" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="135pt"
+        android:layout_marginTop="7pt"
+        android:background="@color/colorAccent"
+        android:text="Zapisz"
+        android:textColor="@android:color/background_light" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12pt"
+        android:layout_marginTop="30pt"
+        android:text="Sposób treningu"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <Spinner
+        android:id="@+id/spinnerSposob"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+        android:layout_width="137dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="230dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12pt"
+        android:layout_marginTop="50pt"
+        android:text="Data treningu"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <EditText
+        android:id="@+id/dataTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45pt"
+        android:layout_marginLeft="100pt"
+        android:ems="6"
+        android:inputType="date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12pt"
+        android:layout_marginTop="75pt"
+        android:text="Czas"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45pt"
+        android:layout_marginTop="75pt"
+        android:text="Moc"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75pt"
+        android:layout_marginTop="75pt"
+        android:text="Tempo"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="107pt"
+        android:layout_marginTop="75pt"
+        android:text="Dystans (m)"
+        android:textColor="@android:color/black"
+        android:textSize="9pt" />
+
+    <Button
+        android:id="@+id/addInterwal"
+        android:layout_width="20pt"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160pt"
+        android:layout_marginTop="79pt"
+        android:background="@color/colorAccent"
+        android:text="+"
+        android:textColor="@android:color/background_light" />
 
 </FrameLayout>
