@@ -9,12 +9,12 @@ import java.util.Date;
 public class Interwal {
 
     int idInterwalu;
-    Date czasInterwalu;
+    String czasInterwalu;
     String mocInterwalu;
     String tempoInterwalu;
     String dystansInterwalu;
 
-    public Interwal(int idInterwalu, Date czasInterwalu, String mocInterwalu, String tempoInterwalu, String dystansInterwalu){
+    public Interwal(int idInterwalu, String czasInterwalu, String mocInterwalu, String tempoInterwalu, String dystansInterwalu){
 
         this.idInterwalu=idInterwalu;
         this.czasInterwalu=czasInterwalu;
@@ -31,11 +31,11 @@ public class Interwal {
         this.idInterwalu = idInterwalu;
     }
 
-    public Date getCzasInterwalu() {
+    public String getCzasInterwalu() {
         return czasInterwalu;
     }
 
-    public void setCzasInterwalu(Date czasInterwalu) {
+    public void setCzasInterwalu(String czasInterwalu) {
         this.czasInterwalu = czasInterwalu;
     }
 

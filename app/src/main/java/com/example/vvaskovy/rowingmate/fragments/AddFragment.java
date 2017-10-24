@@ -1,10 +1,14 @@
 package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vvaskovy.rowingmate.DatabaseHelper;
 import com.example.vvaskovy.rowingmate.Interwal;
 import com.example.vvaskovy.rowingmate.R;
 
@@ -41,6 +46,9 @@ public class AddFragment extends Fragment {
     ArrayList<String> arrayInterwalow;
     int licznik;
     ArrayList<Interwal> interwalySQL;
+    SQLiteDatabase sqLiteDatabase;
+    DatabaseHelper db;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -93,12 +101,16 @@ public class AddFragment extends Fragment {
         zapiszTrening = (Button) getView().findViewById(R.id.zapiszTrening);
         oczyscTrening = (Button) getView().findViewById(R.id.oczyśćTrening);
         podzielsieTreningiem = (Button) getView().findViewById(R.id.podzielsieTreningiem);
+        podzielsieTreningiem.setVisibility(View.GONE);
 
         listaInterwalow = (ListView) getView().findViewById(R.id.listaInterwalow);
         arrayInterwalow = new ArrayList<String>();
         licznik = 1;
         interwalySQL = new ArrayList<Interwal>();
         final ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayInterwalow);
+
+        db = new DatabaseHelper(getActivity());
+        sqLiteDatabase = db.getWritableDatabase();
 
 
         dodajInterwal.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +121,7 @@ public class AddFragment extends Fragment {
                 mocTreninguPobrana = mocTreningu.getText().toString();
                 tempoTreninguPobrane = tempoTreningu.getText().toString();
                 dystansTreninguPobrany = dystansTreningu.getText().toString();
+                podzielsieTreningiem.setVisibility(View.GONE);
 
 
                 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
@@ -117,13 +130,12 @@ public class AddFragment extends Fragment {
                     if(czasTreningupobrany.equals(" ") || mocTreninguPobrana.equals("") || tempoTreninguPobrane.equals("") || dystansTreninguPobrany.equals(""))
                         Toast.makeText(getActivity(),"Wszystkie pola muszą być wypełnione!", Toast.LENGTH_SHORT).show();
                     else{
-                        Interwal i = new Interwal(licznik, date, mocTreninguPobrana,tempoTreninguPobrane,dystansTreninguPobrany);
+                        Interwal i = new Interwal(licznik, czasTreningupobrany, mocTreninguPobrana,tempoTreninguPobrane,dystansTreninguPobrany);
                         interwalySQL.add(i);
                         arrayInterwalow.add(licznik+".  "+czasTreningupobrany+ "   "+mocTreninguPobrana+"           "+ tempoTreninguPobrane+"              "+ dystansTreninguPobrany );
-                       // ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayInterwalow);
                         listaInterwalow.setAdapter(adapter);
                         licznik++;
-                        Toast.makeText(getActivity(),"Jestem " +czasTreningupobrany+ " "+ mocTreninguPobrana+ " "+ tempoTreninguPobrane+ " "+ dystansTreninguPobrany, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(),"Jestem " +czasTreningupobrany+ " "+ mocTreninguPobrana+ " "+ tempoTreninguPobrane+ " "+ dystansTreninguPobrany, Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (ParseException e) {
@@ -149,8 +161,58 @@ public class AddFragment extends Fragment {
                         Toast.makeText(getActivity(),"Nie dodałeś żadnego interwalu", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        //TODO : dodać dodawanie do BD
-                        Toast.makeText(getActivity(), dataTreninguFormatowana + " " + sposobTreninguPobrany, Toast.LENGTH_LONG).show();
+
+                        podzielsieTreningiem.setVisibility(View.VISIBLE);
+
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put("sposobTreningu", sposobTreninguPobrany);
+                        contentValues.put("dataTreningu", dataTreninguPobrana);
+                        sqLiteDatabase.insert("Trening", null, contentValues);
+                        Log.d("Log","Data inserted");
+                        Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Trening Where sposobTreningu = '"+sposobTreninguPobrany+
+                                "' AND dataTreningu = '"+dataTreninguPobrana+"'", null);
+                        int idTreningu=-1;
+                        if(cursor.moveToFirst()){
+                            do{
+                                idTreningu = cursor.getInt(cursor.getColumnIndex("idTreningu"));
+                                Log.d("Log", "id "+cursor.getInt(cursor.getColumnIndex("idTreningu"))+" sposob "+
+                                        cursor.getString(cursor.getColumnIndex("sposobTreningu"))+
+                                        " data "+ cursor.getString(cursor.getColumnIndex("dataTreningu")));
+                            }while(cursor.moveToNext());
+                        }else{
+                            Log.d("log","Pusta tablica");
+                        }
+
+                        int nrInterwaluSQL=1;
+                        for( Interwal interwal: interwalySQL){
+
+                            contentValues.clear();
+                            contentValues = new ContentValues();
+                            contentValues.put("idTreningu", idTreningu);
+                            contentValues.put("nrInterwalu", nrInterwaluSQL);
+                            contentValues.put("czasInterwalu", interwal.getCzasInterwalu());
+                            contentValues.put("mocInterwalu", interwal.getMocInterwalu());
+                            contentValues.put("dystansInterwalu", interwal.getDystansInterwalu());
+                            contentValues.put("tempoInterwalu", interwal.getTempoInterwalu());
+                            sqLiteDatabase.insert("Interwal", null, contentValues);
+                            Log.d("Log","Data inserted");
+                            nrInterwaluSQL++;
+                        }
+                        Cursor cursor2 = sqLiteDatabase.rawQuery("Select * FROM Interwal Where idTreningu = '"+idTreningu+
+                                "' AND nrInterwalu = '1'", null);
+                        if(cursor2.moveToFirst()){
+                            do{
+                                Log.d("Log", "id "+cursor2.getInt(cursor2.getColumnIndex("idTreningu"))+" czasInterwalu "+
+                                        cursor2.getString(cursor2.getColumnIndex("czasInterwalu"))+
+                                        " dystansInterwalu "+ cursor2.getString(cursor2.getColumnIndex("dystansInterwalu")));
+                            }while(cursor.moveToNext());
+                        }else{
+                            Log.d("log","Pusta tablica");
+                        }
+
+
+
+                        Toast.makeText(getActivity(), "Dane zostałe zapisane", Toast.LENGTH_LONG).show();
                     }
                 } catch (ParseException e) {
                     Toast.makeText(getActivity(),"Data treningu musi być w formacie dd.mm.yyyy", Toast.LENGTH_LONG).show();
@@ -173,6 +235,7 @@ public class AddFragment extends Fragment {
                 arrayInterwalow.clear();
                 listaInterwalow.setAdapter(adapter);
                 licznik=1;
+                podzielsieTreningiem.setVisibility(View.GONE);
             }
         });
 
