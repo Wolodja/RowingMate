@@ -247,8 +247,16 @@ public class AddFragment extends Fragment {
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String shareBody = "To jest en";
-                String shareSub = "Mozę podzielimy się";
+                String shareBody="Oto wynik mojego treningu: ";
+                int nrInterwalu = 1;
+                for (Interwal i :interwalySQL){
+                    shareBody+= "Interwal nr "+nrInterwalu+" ";
+                    nrInterwalu++;
+                    shareBody+= i.getCzasInterwalu()+" min, "+i.getDystansInterwalu()+
+                            " m, "+i.getMocInterwalu()+" watt, "+i.getTempoInterwalu()+" pociągnięć na minutę";
+
+                }
+                String shareSub = "Oto mój dzisiejszy trening!";
                 intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(intent, "Podziel się przez:"));

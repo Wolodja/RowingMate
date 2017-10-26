@@ -6,8 +6,196 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/zrealizowane" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zrealizowane"
+        android:textSize="11pt"
+        android:layout_marginLeft="14pt"
+        android:layout_marginTop="8pt"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6pt"
+        android:layout_marginTop="35pt"
+        android:text="Sortuj"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxSposob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sposób treningu"
+        android:layout_marginTop="49pt"
+        android:layout_marginLeft="20pt"
+        android:textSize="8pt"
+        android:textColor="@android:color/black"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerSposob"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+        android:layout_width="147dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="225dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="100dp"
+        android:textAlignment="center" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_marginTop="65pt"
+        android:text="Data treningu"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/dataTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60pt"
+        android:layout_marginLeft="100pt"
+        android:ems="6"
+        android:gravity="center"
+        android:inputType="date" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxDystans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_marginTop="81pt"
+        android:text="Dystans treningu"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/dystansTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100pt"
+        android:layout_marginTop="76pt"
+        android:gravity="center"
+        android:ems="6"
+        android:inputType="number" />
+
+    <CheckBox
+        android:id="@+id/checkBoxCzas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_marginTop="97pt"
+        android:text="Czas treningu (min)"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/czasTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100pt"
+        android:layout_marginTop="92pt"
+        android:gravity="center"
+        android:ems="6"
+        android:inputType="time" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="111pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_marginTop="113pt"
+        android:text="Moc treningu"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/mocTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100pt"
+        android:layout_marginTop="108pt"
+        android:gravity="center"
+        android:ems="6"
+        android:inputType="number" />
+
+    <CheckBox
+        android:id="@+id/checkBoxTempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="129pt"
+        android:layout_marginLeft="5pt"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_marginTop="131pt"
+        android:text="Moc treningu"
+        android:textColor="@android:color/black"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/tempoTreningu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100pt"
+        android:layout_marginTop="125pt"
+        android:gravity="center"
+        android:ems="6"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/wyszukajTrening"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6pt"
+        android:layout_marginLeft="62pt"
+        android:layout_marginTop="200pt"
+        android:background="@android:color/holo_green_light"
+        android:text=" Wyszukaj treningi "
+        android:textColor="@android:color/background_light" />
+
+
 
 </FrameLayout>
