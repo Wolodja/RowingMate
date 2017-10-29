@@ -24,12 +24,12 @@ public class PlanningFragment extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
-    ArrayAdapter<CharSequence> adapter1, adapter2, adapter3;
-    Button planuj;
-    Spinner spinner1, spinner2, spinner3;
-    Planning2Fragment planning2Fragment;
-    DatabaseHelper db;
-    int poziomDoUstawienia=-1;
+    private ArrayAdapter<CharSequence> adapter1, adapter2, adapter3;
+    private Button planuj;
+    private Spinner spinner1, spinner2, spinner3;
+    private Planning2Fragment planning2Fragment;
+    private DatabaseHelper db;
+    private int poziomDoUstawienia=-1;
 
 
 

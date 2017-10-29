@@ -1,6 +1,8 @@
 package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -33,8 +36,8 @@ public class TrainingFragment extends Fragment {
     Button wyszukajTrening;
     ArrayAdapter<CharSequence> arrayAdapter;
     String czasTreningupobrany, mocTreninguPobrana, tempoTreninguPobrane, dystansTreninguPobrany, dataTreninguPobrana, sposobTreninguPobrany;
-
-
+    Training2Fragment training2Fragment;
+    CheckBox sposobTreninguCheckBox, dataTreninguCheckBox, dystansTreninguCheckBox, czasTreninguCheckBox, mocTreninguCheckBox,tempoTreninguCheckBox;
 
     private OnFragmentInteractionListener mListener;
 
@@ -89,6 +92,13 @@ public class TrainingFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSposobTreningu.setAdapter(arrayAdapter);
 
+        dataTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxData);
+        sposobTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxSposob);
+        czasTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxCzas);
+        mocTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxMoc);
+        tempoTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxTempo);
+        dystansTreninguCheckBox = (CheckBox) getView().findViewById(R.id.checkBoxDystans);
+
         wyszukajTrening = (Button) getView().findViewById(R.id.wyszukajTrening);
 
         wyszukajTrening.setOnClickListener(new View.OnClickListener(){
@@ -104,25 +114,159 @@ public class TrainingFragment extends Fragment {
                 dataTreninguPobrana = dataTreningu.getText().toString();
                 sposobTreninguPobrany= spinnerSposobTreningu.getSelectedItem().toString();
 
+
+
+                boolean prawidłoweDaty=true;
                 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
                 try {
-                    Date date = formatter.parse(czasTreningupobrany);
+                    if(czasTreningupobrany!= null && !czasTreningupobrany.isEmpty() && czasTreningupobrany!="") {
+                        Date date = formatter.parse(czasTreningupobrany);
+                    }
                 } catch (ParseException e) {
+                    prawidłoweDaty=false;
                     Toast.makeText(getActivity(),"Czas musi być podany w formacie hh:mm:ss", Toast.LENGTH_LONG).show();
                 }
 
                 DateFormat foramtter2 = new SimpleDateFormat("dd.mm.yyyy");
 
                 try {
-                    Date dataTreninguFormatowana = foramtter2.parse(dataTreninguPobrana);
-
+                    if(dataTreninguPobrana!= null && !dataTreninguPobrana.isEmpty() && dataTreninguPobrana!="") {
+                        Date dataTreninguFormatowana = foramtter2.parse(dataTreninguPobrana);
+                    }
                 } catch (ParseException e) {
+                    prawidłoweDaty=false;
                     Toast.makeText(getActivity(),"Data treningu musi być w formacie dd.mm.yyyy", Toast.LENGTH_LONG).show();
                 }
 
-                Toast.makeText(getActivity(),czasTreningupobrany+" "+mocTreninguPobrana+" "+ tempoTreninguPobrane+
-                        " "+dystansTreninguPobrany+" "+dataTreninguPobrana+" "+sposobTreninguPobrany, Toast.LENGTH_LONG).show();
+                if(prawidłoweDaty) {
+                   // Toast.makeText(getActivity(), czasTreningupobrany + " " + mocTreninguPobrana + " " + tempoTreninguPobrane +
+                     //       " " + dystansTreninguPobrany + " " + dataTreninguPobrana + " " + sposobTreninguPobrany, Toast.LENGTH_LONG).show();
 
+                    int licznik = 0;
+                    String textSQL = "Select * FROM Trening T Join Interwal I on T.idTreningu = I.idTreningu ";
+                    if(!dataTreninguPobrana.isEmpty()) {
+                        if (licznik == 0)
+                            textSQL += "WHERE ";
+                        textSQL += "T.dataTreningu = '" + dataTreninguPobrana + "' ";
+                        licznik++;
+                    }
+                    if(!sposobTreninguPobrany.isEmpty()) {
+                        if(licznik == 0){
+                            //textSQL+="WHERE ";
+                        }
+                        else{
+                            //textSQL+="AND ";
+                        }
+                        //textSQL+="T.sposobTreningu = '"+sposobTreninguPobrany+"' ";
+                        //licznik++;
+                    }
+                    if(!mocTreninguPobrana.isEmpty()) {
+                        if(licznik == 0){
+                            textSQL+="WHERE ";
+                        }
+                        else{
+                            textSQL+="AND ";
+                        }
+                        textSQL+="I.mocInterwalu = '"+mocTreninguPobrana+"' ";
+                        licznik++;
+                    }
+                    if(!czasTreningupobrany.isEmpty()) {
+                        if(licznik == 0){
+                            textSQL+="WHERE ";
+                        }
+                        else{
+                            textSQL+="AND ";
+                        }
+                        textSQL+="I.czasInterwalu = '"+czasTreningupobrany+"' ";
+                        licznik++;
+                    }
+                    if(!tempoTreninguPobrane.isEmpty()) {
+                        if(licznik == 0){
+                            textSQL+="WHERE ";
+                        }
+                        else{
+                            textSQL+="AND ";
+                        }
+                        textSQL+="I.tempoInterwalu = '"+tempoTreninguPobrane+"' ";
+                        licznik++;
+                    }
+                    if(!dystansTreninguPobrany.isEmpty()) {
+                        if(licznik == 0){
+                            textSQL+="WHERE ";
+                        }
+                        else{
+                            textSQL+="AND ";
+                        }
+                        textSQL+="I.dystansInterwalu = '"+dystansTreninguPobrany+"' ";
+                        licznik++;
+                    }
+
+                    int licznik2 = 0;
+                    if(sposobTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" sposobTreningu";
+                        licznik2++;
+                    }
+                    if(dataTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" dataTreningu desc";
+                        licznik2++;
+                    }
+                    if(dystansTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" dystansInterwalu desc";
+                        licznik2++;
+                    }
+                    if(mocTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" mocInterwalu desc";
+                        licznik2++;
+                    }
+                    if(tempoTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" tempoInterwalu asc";
+                        licznik2++;
+                    }
+                    if(czasTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" czasInterwalu asc";
+                        licznik2++;
+                    }
+                    textSQL+=";";
+                    Toast.makeText(getActivity(), textSQL, Toast.LENGTH_LONG).show();
+                    training2Fragment = new Training2Fragment();
+                    training2Fragment.setTextSQL(textSQL);
+                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, training2Fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
 
             }
         });

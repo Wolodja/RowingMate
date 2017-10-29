@@ -171,7 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="131pt"
-        android:text="Moc treningu"
+        android:text="Tempo treningu"
         android:textColor="@android:color/black"
         android:textSize="8pt" />
 
