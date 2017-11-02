@@ -20,11 +20,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table Uzytkownik(imie text primary key, poziom integer );");
 
-        db.execSQL("create table Trening(idTreningu integer primary key autoincrement, sposobTreningu text not null, dataTreningu text not null );");
+        db.execSQL("create table Training(idTreningu integer primary key autoincrement, sposobTreningu text not null, dataTreningu text not null );");
 
         db.execSQL("create table Interwal(idTreningu integer, nrInterwalu integer not null, czasInterwalu text not null," +
                 " mocInterwalu integer,tempoInterwalu integer, dystansInterwalu integer," +
-                " FOREIGN KEY (idTreningu) REFERENCES Trening(idTrening), primary key (idTreningu, nrInterwalu));");
+                " FOREIGN KEY (idTreningu) REFERENCES Training(idTrening), primary key (idTreningu, nrInterwalu));");
 
         db.execSQL("create table Plan(idPlanu integer primary key autoincrement, " +
                 "czasPlanu integer, typPlanu text, poziomUzytkownika integer, opisPlanu text);");

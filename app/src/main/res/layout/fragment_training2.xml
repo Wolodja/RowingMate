@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,4 +6,26 @@
 
 
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="20pt"
+        android:layout_weight="1"
+        android:text="Wyniki"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:layout_marginTop="10pt"
+        android:textSize="11pt"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32pt"
+        android:layout_weight="1"
+        android:id="@+id/trainingListView"
+        android:dividerHeight="5pt"
+        android:divider="#d1d1d1"/>
+</RelativeLayout>

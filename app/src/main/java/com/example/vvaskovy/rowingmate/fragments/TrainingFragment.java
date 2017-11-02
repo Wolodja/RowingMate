@@ -152,13 +152,13 @@ public class TrainingFragment extends Fragment {
                     }
                     if(!sposobTreninguPobrany.isEmpty()) {
                         if(licznik == 0){
-                            //textSQL+="WHERE ";
+                            textSQL+="WHERE ";
                         }
                         else{
-                            //textSQL+="AND ";
+                            textSQL+="AND ";
                         }
-                        //textSQL+="T.sposobTreningu = '"+sposobTreninguPobrany+"' ";
-                        //licznik++;
+                        textSQL+="T.sposobTreningu = '"+sposobTreninguPobrany+"' ";
+                        licznik++;
                     }
                     if(!mocTreninguPobrana.isEmpty()) {
                         if(licznik == 0){
@@ -229,6 +229,15 @@ public class TrainingFragment extends Fragment {
                         textSQL+=" dystansInterwalu desc";
                         licznik2++;
                     }
+                    if(czasTreninguCheckBox.isChecked()){
+                        if(licznik2==0){
+                            textSQL+=" ORDER BY ";
+                        }else{
+                            textSQL+=",";
+                        }
+                        textSQL+=" czasInterwalu asc";
+                        licznik2++;
+                    }
                     if(mocTreninguCheckBox.isChecked()){
                         if(licznik2==0){
                             textSQL+=" ORDER BY ";
@@ -247,15 +256,7 @@ public class TrainingFragment extends Fragment {
                         textSQL+=" tempoInterwalu asc";
                         licznik2++;
                     }
-                    if(czasTreninguCheckBox.isChecked()){
-                        if(licznik2==0){
-                            textSQL+=" ORDER BY ";
-                        }else{
-                            textSQL+=",";
-                        }
-                        textSQL+=" czasInterwalu asc";
-                        licznik2++;
-                    }
+
                     textSQL+=";";
                     Toast.makeText(getActivity(), textSQL, Toast.LENGTH_LONG).show();
                     training2Fragment = new Training2Fragment();

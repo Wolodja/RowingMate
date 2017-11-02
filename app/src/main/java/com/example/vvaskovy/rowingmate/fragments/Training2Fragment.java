@@ -1,6 +1,5 @@
 package com.example.vvaskovy.rowingmate.fragments;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -11,12 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import com.example.vvaskovy.rowingmate.DatabaseHelper;
 import com.example.vvaskovy.rowingmate.Interwal;
 import com.example.vvaskovy.rowingmate.R;
-import com.example.vvaskovy.rowingmate.Trening;
+import com.example.vvaskovy.rowingmate.Training;
+import com.example.vvaskovy.rowingmate.TrainingListAdapter;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,9 @@ public class Training2Fragment extends Fragment {
 
     private String textSQL;
     private DatabaseHelper db;
-    ArrayList<Trening> treningi;
+    private ArrayList<Training> trainings;
+    private ListView lvTrainings;
+    private TrainingListAdapter adapter;
 
 
 
@@ -76,7 +78,7 @@ public class Training2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Toast.makeText(getActivity(), textSQL, Toast.LENGTH_LONG).show();
-        treningi = new ArrayList<Trening>();
+        trainings = new ArrayList<Training>();
         db = new DatabaseHelper(getActivity());
         final SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
@@ -94,16 +96,22 @@ public class Training2Fragment extends Fragment {
                         cursor.getString(cursor.getColumnIndex("mocInterwalu")), cursor.getString(cursor.getColumnIndex("tempoInterwalu")),
                         cursor.getString(cursor.getColumnIndex("dystansInterwalu")));
 
-                Trening t = new Trening(cursor.getInt(cursor.getColumnIndex("idTreningu")),
+                Training t = new Training(cursor.getInt(cursor.getColumnIndex("idTreningu")),
                         cursor.getString(cursor.getColumnIndex("dataTreningu")), cursor.getString(cursor.getColumnIndex("sposobTreningu")));
 
                 t.addInterwal(i);
-                treningi.add(t);
+                trainings.add(t);
 
             }while(cursor.moveToNext());
         }else{
             Log.d("log","Pusta tablica");
         }
+
+        lvTrainings = (ListView)getView().findViewById(R.id.trainingListView);
+        adapter = new TrainingListAdapter(getActivity().getApplicationContext(), trainings);
+        lvTrainings.setAdapter(adapter);
+
+
 
 
     }

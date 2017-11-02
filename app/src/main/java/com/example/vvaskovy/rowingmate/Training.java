@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by VVASKOVY on 29.10.2017.
  */
 
-public class Trening {
+public class Training {
 
     private int idTreningu;
     private String dataTreningu;
@@ -45,7 +45,7 @@ public class Trening {
         return interwals;
     }
 
-    public Trening(int idTreningu, String dataTreningu, String sposobTreningu) {
+    public Training(int idTreningu, String dataTreningu, String sposobTreningu) {
         this.idTreningu = idTreningu;
         this.dataTreningu = dataTreningu;
         this.sposobTreningu = sposobTreningu;

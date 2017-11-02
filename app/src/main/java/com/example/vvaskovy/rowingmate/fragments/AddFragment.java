@@ -167,9 +167,9 @@ public class AddFragment extends Fragment {
                         ContentValues contentValues = new ContentValues();
                         contentValues.put("sposobTreningu", sposobTreninguPobrany);
                         contentValues.put("dataTreningu", dataTreninguPobrana);
-                        sqLiteDatabase.insert("Trening", null, contentValues);
+                        sqLiteDatabase.insert("Training", null, contentValues);
                         Log.d("Log","Data inserted");
-                        Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Trening Where sposobTreningu = '"+sposobTreninguPobrany+
+                        Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Training Where sposobTreningu = '"+sposobTreninguPobrany+
                                 "' AND dataTreningu = '"+dataTreninguPobrana+"'", null);
                         int idTreningu=-1;
                         if(cursor.moveToFirst()){
