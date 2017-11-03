@@ -3,6 +3,7 @@ package com.example.vvaskovy.rowingmate;
 import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.vvaskovy.rowingmate.fragments.AddFragment;
@@ -25,14 +29,15 @@ import com.example.vvaskovy.rowingmate.fragments.TrainingFragment;
 public class MenuBar extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    MotivationFragment motivationFragment;
-    PlanningFragment planningFragment;
-    AddFragment addFragment;
-    TrainingFragment trainingFragment;
-    DataFragment dataFragment;
-    TextView glowne_imie ,glowne_poziom;
-    DatabaseHelper db;
-
+    private MotivationFragment motivationFragment;
+    private PlanningFragment planningFragment;
+    private AddFragment addFragment;
+    private TrainingFragment trainingFragment;
+    private DataFragment dataFragment;
+    private TextView glowne_imie ,glowne_poziom;
+    private DatabaseHelper db;
+    private Button bt1, bt2, bt3,bt4;
+    private FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,77 @@ public class MenuBar extends AppCompatActivity
         addFragment = new AddFragment();
         trainingFragment = new TrainingFragment();
         dataFragment = new DataFragment();
+
+        bt1 = (Button) findViewById(R.id.menu_bt1);
+        bt2 = (Button) findViewById(R.id.menu_bt2);
+        bt3 = (Button) findViewById(R.id.menu_bt3);
+        bt4 = (Button) findViewById(R.id.menu_bt4);
+
+        fragmentTransaction = getFragmentManager().beginTransaction();
+
+
+        bt1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                RelativeLayout fr = (RelativeLayout) findViewById(R.id.container);
+                fr.setBackgroundColor(Color.parseColor("#1faf95"));
+                bt1.setVisibility(View.INVISIBLE);
+                bt2.setVisibility(View.INVISIBLE);
+                bt3.setVisibility(View.INVISIBLE);
+                bt4.setVisibility(View.INVISIBLE);
+                fragmentTransaction.replace(R.id.container,planningFragment);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        bt2.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                RelativeLayout fr = (RelativeLayout) findViewById(R.id.container);
+                fr.setBackgroundColor(Color.parseColor("#1faf95"));
+                bt1.setVisibility(View.INVISIBLE);
+                bt2.setVisibility(View.INVISIBLE);
+                bt3.setVisibility(View.INVISIBLE);
+                bt4.setVisibility(View.INVISIBLE);
+                fragmentTransaction.replace(R.id.container,addFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        bt3.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                RelativeLayout fr = (RelativeLayout) findViewById(R.id.container);
+                fr.setBackgroundColor(Color.parseColor("#1faf95"));
+                bt1.setVisibility(View.INVISIBLE);
+                bt2.setVisibility(View.INVISIBLE);
+                bt3.setVisibility(View.INVISIBLE);
+                bt4.setVisibility(View.INVISIBLE);
+                fragmentTransaction.replace(R.id.container,trainingFragment);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        bt4.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                RelativeLayout fr = (RelativeLayout) findViewById(R.id.container);
+                fr.setBackgroundColor(Color.parseColor("#1faf95"));
+                bt1.setVisibility(View.INVISIBLE);
+                bt2.setVisibility(View.INVISIBLE);
+                bt3.setVisibility(View.INVISIBLE);
+                bt4.setVisibility(View.INVISIBLE);
+                fragmentTransaction.replace(R.id.container,dataFragment);
+                fragmentTransaction.commit();
+
+            }
+        });
 
 
     }
@@ -133,8 +209,12 @@ public class MenuBar extends AppCompatActivity
         int id = item.getItemId();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-        FrameLayout fr = (FrameLayout) findViewById(R.id.container);
-        fr.setBackgroundColor(0x00000000);
+        RelativeLayout fr = (RelativeLayout) findViewById(R.id.container);
+        fr.setBackgroundColor(Color.parseColor("#1faf95"));
+        bt1.setVisibility(View.INVISIBLE);
+        bt2.setVisibility(View.INVISIBLE);
+        bt3.setVisibility(View.INVISIBLE);
+        bt4.setVisibility(View.INVISIBLE);
         if (id == R.id.motywacja) {
             fragmentTransaction.replace(R.id.container, motivationFragment);
         } else if (id == R.id.zaplanuj) {
