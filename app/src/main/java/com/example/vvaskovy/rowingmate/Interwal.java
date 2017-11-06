@@ -8,11 +8,11 @@ import java.util.Date;
 
 public class Interwal {
 
-    int idInterwalu;
-    String czasInterwalu;
-    String mocInterwalu;
-    String tempoInterwalu;
-    String dystansInterwalu;
+    private int idInterwalu;
+    private String czasInterwalu;
+    private String mocInterwalu;
+    private String tempoInterwalu;
+    private String dystansInterwalu;
 
     public Interwal(int idInterwalu, String czasInterwalu, String mocInterwalu, String tempoInterwalu, String dystansInterwalu){
 

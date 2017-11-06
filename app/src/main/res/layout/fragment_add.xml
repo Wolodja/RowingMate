@@ -4,17 +4,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.vvaskovy.rowingmate.fragments.AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17pt"
+        android:layout_marginLeft="54pt"
         android:layout_marginTop="10pt"
         android:fontFamily="casual"
         android:text="@string/dodaj"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="10pt" />
+        android:textColor="@android:color/white"
+        android:textSize="11pt" />
 
 
     <TextView
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12pt"
         android:layout_marginTop="35pt"
-        android:text="Sposób treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/sposob_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <Spinner
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12pt"
         android:layout_marginTop="57pt"
-        android:text="Data treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/data_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText
@@ -59,37 +59,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12pt"
+        android:layout_marginLeft="17pt"
         android:layout_marginTop="80pt"
-        android:text="Czas"
-        android:textColor="@android:color/black"
+        android:text="@string/czas"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="45pt"
+        android:layout_marginLeft="54pt"
         android:layout_marginTop="80pt"
-        android:text="Moc"
-        android:textColor="@android:color/black"
+        android:text="@string/moc"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70pt"
+        android:layout_marginLeft="78pt"
         android:layout_marginTop="80pt"
-        android:text="Tempo"
-        android:textColor="@android:color/black"
+        android:text="@string/tempo"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="107pt"
+        android:layout_marginLeft="110pt"
         android:layout_marginTop="80pt"
-        android:text="Dystans (m)"
-        android:textColor="@android:color/black"
+        android:text="@string/dystans"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <Button
@@ -106,27 +106,27 @@
         android:id="@+id/czasTreningu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="11pt"
+        android:layout_marginLeft="9pt"
         android:layout_marginTop="90pt"
         android:gravity="center"
-        android:ems="3"
+        android:ems="4"
         android:inputType="time" />
 
     <EditText
         android:id="@+id/mocTreningu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="43pt"
+        android:layout_marginLeft="49pt"
         android:layout_marginTop="90pt"
         android:gravity="center"
-        android:ems="2"
+        android:ems="3"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/tempoTreningu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="73pt"
+        android:layout_marginLeft="83pt"
         android:layout_marginTop="90pt"
         android:gravity="center"
         android:ems="2"
@@ -136,7 +136,7 @@
         android:id="@+id/dystansTreningu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="109pt"
+        android:layout_marginLeft="112pt"
         android:layout_marginTop="90pt"
         android:gravity="center"
         android:ems="4"
@@ -146,7 +146,9 @@
         android:id="@+id/listaInterwalow"
         android:layout_width="match_parent"
         android:layout_height="239dp"
-        android:layout_marginTop="120pt"/>
+        android:layout_marginTop="120pt"
+        android:textColor="@android:color/black"
+        />
 
     <Button
         android:id="@+id/zapiszTrening"

@@ -2,11 +2,13 @@ package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +21,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vvaskovy.rowingmate.DatabaseHelper;
+import com.example.vvaskovy.rowingmate.GreedActivity;
+import com.example.vvaskovy.rowingmate.MenuBar;
 import com.example.vvaskovy.rowingmate.R;
 
 
 public class DataFragment extends Fragment {
 
 
-    RadioGroup radioGroup;
-    RadioButton rb1, rb2, rb3, rb4, rb;
-    EditText name;
-    Button zapisz;
-    String imie;
-    String poziom;
-    DatabaseHelper db;
-    TextView glowne_imie ,glowne_poziom;
+    private RadioGroup radioGroup;
+    private RadioButton rb1, rb2, rb3, rb4, rb;
+    private EditText name;
+    private Button zapisz;
+    private String imie;
+    private String poziom;
+    private DatabaseHelper db;
+    private TextView glowne_imie ,glowne_poziom;
     private OnFragmentInteractionListener mListener;
 
     public DataFragment() {
@@ -65,16 +69,6 @@ public class DataFragment extends Fragment {
         }
     }
 
-/*    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -164,6 +158,9 @@ public class DataFragment extends Fragment {
                 }
                 cursor.close();
 
+                startActivity(new Intent(getActivity(), MenuBar.class));
+
+
             }
         });
 
@@ -178,7 +175,6 @@ public class DataFragment extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

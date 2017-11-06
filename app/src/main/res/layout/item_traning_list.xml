@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#FFFF">
 
     <TextView
         android:layout_width="35pt"
@@ -11,6 +12,7 @@
         android:paddingTop="12pt"
         android:paddingLeft="4pt"
         android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:textSize="6pt"/>
 
     <TextView
@@ -22,17 +24,20 @@
         android:textSize="6pt"
         android:textAlignment="center"
         android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:paddingTop="5pt"/>
 
     <TextView
         android:layout_width="70pt"
-        android:layout_height="15pt"
+        android:layout_height="15.5pt"
         android:layout_marginLeft="35pt"
         android:layout_marginTop="14.5pt"
         android:id="@+id/czasText"
         android:text="30:00:00"
         android:textSize="6pt"
         android:textAlignment="center"
+        android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:paddingTop="5pt"/>
 
     <TextView
@@ -43,27 +48,33 @@
         android:text="12.03.2017"
         android:textSize="6pt"
         android:textAlignment="center"
+        android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:paddingTop="5pt"/>
 
     <TextView
         android:layout_width="40pt"
-        android:layout_height="15pt"
+        android:layout_height="15.5pt"
         android:layout_marginLeft="105pt"
         android:layout_marginTop="14.5pt"
         android:id="@+id/dystansText"
         android:text="12345 m"
         android:textSize="6pt"
         android:textAlignment="center"
+        android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:paddingTop="5pt"/>
 
     <TextView
-        android:layout_width="30pt"
+        android:layout_width="42pt"
         android:layout_height="30pt"
         android:layout_marginLeft="145pt"
         android:id="@+id/tempoText"
         android:text="24 s/m"
         android:textAlignment="center"
         android:paddingTop="12pt"
+        android:background="@drawable/back2"
+        android:textColor="@android:color/black"
         android:textSize="6pt"/>
 
 

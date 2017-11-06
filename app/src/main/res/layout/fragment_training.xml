@@ -4,24 +4,24 @@
     android:layout_height="match_parent"
     tools:context="com.example.vvaskovy.rowingmate.fragments.TrainingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/zrealizowane"
         android:textSize="11pt"
-        android:layout_marginLeft="14pt"
+        android:layout_marginLeft="44pt"
         android:layout_marginTop="8pt"
         android:fontFamily="casual"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6pt"
         android:layout_marginTop="35pt"
-        android:text="Sortuj"
-        android:textColor="@android:color/black"
+        android:text="@string/sortuj"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
 
@@ -35,11 +35,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sposób treningu"
+        android:text="@string/sposob_treningu2"
         android:layout_marginTop="49pt"
         android:layout_marginLeft="20pt"
         android:textSize="8pt"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         />
 
     <Spinner
@@ -66,8 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="65pt"
-        android:text="Data treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/data_treningu2"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText
@@ -93,8 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="81pt"
-        android:text="Dystans treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/dystans_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText
@@ -119,8 +119,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="97pt"
-        android:text="Czas treningu (min)"
-        android:textColor="@android:color/black"
+        android:text="@string/czas_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText
@@ -145,8 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="113pt"
-        android:text="Moc treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/moc_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText
@@ -171,8 +171,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20pt"
         android:layout_marginTop="131pt"
-        android:text="Tempo treningu"
-        android:textColor="@android:color/black"
+        android:text="@string/tempo_treningu"
+        android:textColor="@android:color/white"
         android:textSize="8pt" />
 
     <EditText

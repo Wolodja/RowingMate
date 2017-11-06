@@ -36,18 +36,17 @@ import java.util.zip.DataFormatException;
 public class AddFragment extends Fragment {
 
 
-    EditText dataTreningu, czasTreningu, mocTreningu, tempoTreningu, dystansTreningu;
-    Spinner spinnerSposobTreningu;
-    ArrayAdapter<CharSequence> arrayAdapter;
-    Button dodajInterwal, zapiszTrening, oczyscTrening, podzielsieTreningiem;
-    //Date dataTreninguPobrana;
-    String czasTreningupobrany, mocTreninguPobrana, tempoTreninguPobrane, dystansTreninguPobrany, dataTreninguPobrana, sposobTreninguPobrany;
-    ListView listaInterwalow;
-    ArrayList<String> arrayInterwalow;
-    int licznik;
-    ArrayList<Interwal> interwalySQL;
-    SQLiteDatabase sqLiteDatabase;
-    DatabaseHelper db;
+    private EditText dataTreningu, czasTreningu, mocTreningu, tempoTreningu, dystansTreningu;
+    private Spinner spinnerSposobTreningu;
+    private ArrayAdapter<CharSequence> arrayAdapter;
+    private Button dodajInterwal, zapiszTrening, oczyscTrening, podzielsieTreningiem;
+    private String czasTreningupobrany, mocTreninguPobrana, tempoTreninguPobrane, dystansTreninguPobrany, dataTreninguPobrana, sposobTreninguPobrany;
+    private ListView listaInterwalow;
+    private ArrayList<String> arrayInterwalow;
+    private int licznik;
+    private ArrayList<Interwal> interwalySQL;
+    private SQLiteDatabase sqLiteDatabase;
+    private DatabaseHelper db;
 
 
     private OnFragmentInteractionListener mListener;
@@ -132,10 +131,9 @@ public class AddFragment extends Fragment {
                     else{
                         Interwal i = new Interwal(licznik, czasTreningupobrany, mocTreninguPobrana,tempoTreninguPobrane,dystansTreninguPobrany);
                         interwalySQL.add(i);
-                        arrayInterwalow.add(licznik+".  "+czasTreningupobrany+ "   "+mocTreninguPobrana+"           "+ tempoTreninguPobrane+"              "+ dystansTreninguPobrany );
+                        arrayInterwalow.add(licznik+".  "+czasTreningupobrany+ "        "+mocTreninguPobrana+"          "+ tempoTreninguPobrane+"              "+ dystansTreninguPobrany );
                         listaInterwalow.setAdapter(adapter);
                         licznik++;
-                        //Toast.makeText(getActivity(),"Jestem " +czasTreningupobrany+ " "+ mocTreninguPobrana+ " "+ tempoTreninguPobrane+ " "+ dystansTreninguPobrany, Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (ParseException e) {
@@ -167,9 +165,9 @@ public class AddFragment extends Fragment {
                         ContentValues contentValues = new ContentValues();
                         contentValues.put("sposobTreningu", sposobTreninguPobrany);
                         contentValues.put("dataTreningu", dataTreninguPobrana);
-                        sqLiteDatabase.insert("Training", null, contentValues);
+                        sqLiteDatabase.insert("Trening", null, contentValues);
                         Log.d("Log","Data inserted");
-                        Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Training Where sposobTreningu = '"+sposobTreninguPobrany+
+                        Cursor cursor = sqLiteDatabase.rawQuery("Select * FROM Trening Where sposobTreningu = '"+sposobTreninguPobrany+
                                 "' AND dataTreningu = '"+dataTreninguPobrana+"'", null);
                         int idTreningu=-1;
                         if(cursor.moveToFirst()){

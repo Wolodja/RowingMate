@@ -31,13 +31,13 @@ import java.util.Date;
 public class TrainingFragment extends Fragment {
 
 
-    EditText dataTreningu, dystansTreningu, czasTreningu, mocTreningu, tempoTreningu;
-    Spinner spinnerSposobTreningu;
-    Button wyszukajTrening;
-    ArrayAdapter<CharSequence> arrayAdapter;
-    String czasTreningupobrany, mocTreninguPobrana, tempoTreninguPobrane, dystansTreninguPobrany, dataTreninguPobrana, sposobTreninguPobrany;
-    Training2Fragment training2Fragment;
-    CheckBox sposobTreninguCheckBox, dataTreninguCheckBox, dystansTreninguCheckBox, czasTreninguCheckBox, mocTreninguCheckBox,tempoTreninguCheckBox;
+    private EditText dataTreningu, dystansTreningu, czasTreningu, mocTreningu, tempoTreningu;
+    private Spinner spinnerSposobTreningu;
+    private Button wyszukajTrening;
+    private ArrayAdapter<CharSequence> arrayAdapter;
+    private String czasTreningupobrany, mocTreninguPobrana, tempoTreninguPobrane, dystansTreninguPobrany, dataTreninguPobrana, sposobTreninguPobrany;
+    private Training2Fragment training2Fragment;
+    private CheckBox sposobTreninguCheckBox, dataTreninguCheckBox, dystansTreninguCheckBox, czasTreninguCheckBox, mocTreninguCheckBox,tempoTreninguCheckBox;
 
     private OnFragmentInteractionListener mListener;
 
@@ -139,8 +139,6 @@ public class TrainingFragment extends Fragment {
                 }
 
                 if(prawidłoweDaty) {
-                   // Toast.makeText(getActivity(), czasTreningupobrany + " " + mocTreninguPobrana + " " + tempoTreninguPobrane +
-                     //       " " + dystansTreninguPobrany + " " + dataTreninguPobrana + " " + sposobTreninguPobrany, Toast.LENGTH_LONG).show();
 
                     int licznik = 0;
                     String textSQL = "Select * FROM Trening T Join Interwal I on T.idTreningu = I.idTreningu ";
@@ -258,7 +256,6 @@ public class TrainingFragment extends Fragment {
                     }
 
                     textSQL+=";";
-                    Toast.makeText(getActivity(), textSQL, Toast.LENGTH_LONG).show();
                     training2Fragment = new Training2Fragment();
                     training2Fragment.setTextSQL(textSQL);
                     FragmentManager fragmentManager = getActivity().getFragmentManager();
@@ -278,7 +275,6 @@ public class TrainingFragment extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
