@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vvaskovy.rowingmate.Advice;
 import com.example.vvaskovy.rowingmate.DatabaseHelper;
 import com.example.vvaskovy.rowingmate.Interwal;
 import com.example.vvaskovy.rowingmate.R;
@@ -31,6 +32,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.zip.DataFormatException;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class AddFragment extends Fragment {
@@ -83,7 +87,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        showAdvice();
         dataTreningu = (EditText) getView().findViewById(R.id.dataTreningu);
         czasTreningu = (EditText) getView().findViewById(R.id.czasTreningu);
         mocTreningu = (EditText) getView().findViewById(R.id.mocTreningu);
@@ -251,7 +255,7 @@ public class AddFragment extends Fragment {
                     shareBody+= "Interwal nr "+nrInterwalu+" ";
                     nrInterwalu++;
                     shareBody+= i.getCzasInterwalu()+" min, "+i.getDystansInterwalu()+
-                            " m, "+i.getMocInterwalu()+" watt, "+i.getTempoInterwalu()+" pociągnięć na minutę";
+                            " m, "+i.getMocInterwalu()+" watt, "+i.getTempoInterwalu()+" pociągnięć na minutę. ";
 
                 }
                 String shareSub = "Oto mój dzisiejszy trening!";
@@ -269,6 +273,17 @@ public class AddFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+    public void showAdvice() {
+        int showAdviceOrNot = (int) (Math.random() * 10);
+        if (showAdviceOrNot <= 2) {
+            Realm realm = Realm.getDefaultInstance();
+            final RealmResults<Advice> advices = realm.where(Advice.class).findAll();
+            int sizeAdvices = advices.size();
+            int randomNumber = (int) (Math.random() * sizeAdvices);
+            String adviceText = advices.get(randomNumber).getText();
+            Toast.makeText(getContext(), adviceText, Toast.LENGTH_LONG).show();
+        }
     }
 
     /**

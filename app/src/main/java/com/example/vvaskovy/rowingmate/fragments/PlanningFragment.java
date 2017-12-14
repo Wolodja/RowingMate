@@ -15,9 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.vvaskovy.rowingmate.Advice;
 import com.example.vvaskovy.rowingmate.DatabaseHelper;
 import com.example.vvaskovy.rowingmate.R;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class PlanningFragment extends Fragment {
@@ -49,10 +54,13 @@ public class PlanningFragment extends Fragment {
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        showAdvice();
         return inflater.inflate(R.layout.fragment_planning, container, false);
     }
 
@@ -65,6 +73,8 @@ public class PlanningFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+       // showAdvice();
 
         spinner1 = (Spinner) getView().findViewById(R.id.spinner1);
         adapter1 = ArrayAdapter.createFromResource(getActivity(),
@@ -157,6 +167,18 @@ public class PlanningFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void showAdvice(){
+        int showAdviceOrNot = (int) (Math.random()*10);
+        if(showAdviceOrNot<=3){
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Advice> advices = realm.where(Advice.class).findAll();
+        int sizeAdvices = advices.size();
+        int randomNumber = (int) (Math.random()*sizeAdvices);
+        String adviceText = advices.get(randomNumber).getText();
+            Toast.makeText(getContext(), adviceText, Toast.LENGTH_LONG).show();
+        }
     }
 
 

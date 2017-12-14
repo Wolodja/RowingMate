@@ -2,16 +2,24 @@ package com.example.vvaskovy.rowingmate.fragments;
 
 import android.app.Fragment;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.vvaskovy.rowingmate.Advice;
 import com.example.vvaskovy.rowingmate.R;
+import com.squareup.picasso.Picasso;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class MotivationFragment extends Fragment {
@@ -55,6 +63,7 @@ public class MotivationFragment extends Fragment {
         texts[9]="Mieć trudne życie – to wielki przywilej";
 
     }
+   // @RequiresApi(api = Build.VERSION_CODES.M)
     public void setRandomTextAndImage(){
         int a = tempa;
         int b = tempb;
@@ -66,12 +75,15 @@ public class MotivationFragment extends Fragment {
         tempb=b;
         mt.setText(texts[a]);
         int resID = getResources().getIdentifier("mf"+b , "drawable",getActivity().getPackageName());
+        //Picasso.with(getContext()).load(resID).into(mi);
         mi.setImageResource(resID);
     }
 
+    //@RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        showAdvice();
         mt = (TextView) getView().findViewById(R.id.motywacjaText);
         mb = (Button) getView().findViewById(R.id.motywacjaBtn);
         mi = (ImageView) getActivity().findViewById(R.id.motywacjaImg);
@@ -109,5 +121,17 @@ public class MotivationFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void showAdvice() {
+        int showAdviceOrNot = (int) (Math.random() * 10);
+        if (showAdviceOrNot <= 2) {
+            Realm realm = Realm.getDefaultInstance();
+            final RealmResults<Advice> advices = realm.where(Advice.class).findAll();
+            int sizeAdvices = advices.size();
+            int randomNumber = (int) (Math.random() * sizeAdvices);
+            String adviceText = advices.get(randomNumber).getText();
+            Toast.makeText(getContext(), adviceText, Toast.LENGTH_LONG).show();
+        }
     }
 }

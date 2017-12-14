@@ -19,12 +19,16 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vvaskovy.rowingmate.fragments.AddFragment;
 import com.example.vvaskovy.rowingmate.fragments.DataFragment;
 import com.example.vvaskovy.rowingmate.fragments.MotivationFragment;
 import com.example.vvaskovy.rowingmate.fragments.PlanningFragment;
 import com.example.vvaskovy.rowingmate.fragments.TrainingFragment;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MenuBar extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -134,6 +138,17 @@ public class MenuBar extends AppCompatActivity
         });
 
 
+    }
+    public void showAdvice() {
+       // int showAdviceOrNot = (int) Math.random() * 10;
+       // if (showAdviceOrNot <= 2) {
+            Realm realm = Realm.getDefaultInstance();
+            final RealmResults<Advice> advices = realm.where(Advice.class).findAll();
+            int sizeAdvices = advices.size();
+            int randomNumber = (int) Math.random() * sizeAdvices;
+            String adviceText = advices.get(randomNumber).getText();
+            Toast.makeText(this, "dfdsfdf"+adviceText, Toast.LENGTH_LONG).show();
+        //}
     }
 
     @Override
