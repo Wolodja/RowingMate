@@ -22,7 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vvaskovy.rowingmate.fragments.AddFragment;
+import com.example.vvaskovy.rowingmate.fragments.AuthorFragment;
 import com.example.vvaskovy.rowingmate.fragments.DataFragment;
+import com.example.vvaskovy.rowingmate.fragments.LocationFragment;
 import com.example.vvaskovy.rowingmate.fragments.MotivationFragment;
 import com.example.vvaskovy.rowingmate.fragments.PlanningFragment;
 import com.example.vvaskovy.rowingmate.fragments.TrainingFragment;
@@ -38,6 +40,8 @@ public class MenuBar extends AppCompatActivity
     private AddFragment addFragment;
     private TrainingFragment trainingFragment;
     private DataFragment dataFragment;
+    private AuthorFragment authorFragment;
+    private LocationFragment locationFragment;
     private TextView glowne_imie ,glowne_poziom;
     private DatabaseHelper db;
     private Button bt1, bt2, bt3,bt4;
@@ -65,6 +69,8 @@ public class MenuBar extends AppCompatActivity
         addFragment = new AddFragment();
         trainingFragment = new TrainingFragment();
         dataFragment = new DataFragment();
+        authorFragment = new AuthorFragment();
+        locationFragment = new LocationFragment();
 
         bt1 = (Button) findViewById(R.id.menu_bt1);
         bt2 = (Button) findViewById(R.id.menu_bt2);
@@ -241,7 +247,9 @@ public class MenuBar extends AppCompatActivity
         } else if (id == R.id.dane) {
             fragmentTransaction.replace(R.id.container,dataFragment);
         } else if (id == R.id.autor) {
-
+            fragmentTransaction.replace(R.id.container,authorFragment);
+        } else if (id == R.id.lokalizacja) {
+            fragmentTransaction.replace(R.id.container,locationFragment);
         }
         fragmentTransaction.commit();
 

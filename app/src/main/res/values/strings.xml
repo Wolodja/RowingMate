@@ -58,4 +58,6 @@
     <string name="poziom2">Amator</string>
     <string name="poziom3">Zaawansowany</string>
     <string name="poziom4">Mistrz</string>
+    <string name="author">Application was created and designed by Volodymyr Vaskovych</string>
+    <string name="lokalizacja">Moja lokalizacja</string>
 </resources>

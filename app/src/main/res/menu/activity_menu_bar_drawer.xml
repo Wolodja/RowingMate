@@ -19,6 +19,10 @@
             android:icon="@drawable/zrealizowane"
             android:title="@string/zrealizowane" />
         <item
+            android:id="@+id/lokalizacja"
+            android:icon="@drawable/ic_action_name"
+            android:title="@string/lokalizacja" />
+        <item
             android:id="@+id/dane"
             android:icon="@drawable/dane"
             android:title="@string/dane" />
